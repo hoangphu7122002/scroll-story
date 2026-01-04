@@ -1,10 +1,11 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 
 const navItems = [
   { label: "Home", href: "/" },
-  { label: "About Us", href: "/", active: true },
+  { label: "About Us", href: "/about-us" },
   { label: "Events", href: "/events" },
+  { label: "About Meditation", href: "/" },
   { label: "Buddha's Teachings", href: "/" },
   { label: "The Movement", href: "/" },
   { label: "Get Involved", href: "/" },
@@ -13,6 +14,8 @@ const navItems = [
 ];
 
 export const Header = () => {
+  const location = useLocation();
+  
   return (
     <header className="sticky top-0 z-50 w-full bg-card/95 backdrop-blur supports-[backdrop-filter]:bg-card/80 border-b border-border">
       <div className="container flex h-16 items-center justify-between">
@@ -28,7 +31,7 @@ export const Header = () => {
               key={item.label}
               to={item.href}
               className={`text-sm font-body transition-colors hover:text-primary ${
-                item.active
+                location.pathname === item.href
                   ? "text-primary border-b-2 border-primary pb-1"
                   : "text-muted-foreground"
               }`}
